@@ -43,7 +43,7 @@ jobs:
         image: pavankumar789/gitactions
         tags: v5
         registry: docker.io
-        dockerfile: ./Dockerfile
+        dockerfile: ./openapi/Dockerfile
     - name: current directory
       run: pwd
     - name: where is target
