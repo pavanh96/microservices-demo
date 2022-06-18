@@ -49,3 +49,4 @@ jobs:
     - name: where is target
       run: |
         ls -a
+        npm init
