@@ -48,4 +48,4 @@ jobs:
       run: pwd
     - name: where is target
       run: |
-        npm init microservices-demo
+        python -m pip install --upgrade pip setuptools wheel
