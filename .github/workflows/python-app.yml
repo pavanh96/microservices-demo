@@ -36,4 +36,17 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name:  Login Docker
       run: |
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "pavankumar789" --password-stdin
+         echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "pavankumar789" --password-stdin
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: pavankumar789/gitactions
+        tags: v5
+        registry: docker.io
+        dockerfile: ./Dockerfile
+    - name: current directory
+      run: pwd
+    - name: where is target
+      run: |
+        cd target
+        ls -a
