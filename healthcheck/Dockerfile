@@ -5,5 +5,5 @@ RUN apk update && \
 
 RUN gem install awesome_print
 
-COPY ./healthcheck.rb healthcheck.rb
+COPY ./healthcheck/healthcheck.rb healthcheck.rb
 ENTRYPOINT ["ruby", "healthcheck.rb"]
