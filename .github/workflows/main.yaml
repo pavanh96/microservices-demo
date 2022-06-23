@@ -86,18 +86,18 @@ jobs:
     #
     #
     # Push to dockerhub
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+#    - name: Set up Docker Buildx
+ #     uses: docker/setup-buildx-action@v1
     
-    - name: Login to DockerHub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_PASS }}
+    - name: docker login
+      run: |
+           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "pavankumar789" --password-stdin
 
-    - name: Build and push
-      uses: docker/build-push-action@v2
+    - name: Push to Docker Hub
+      uses: mr-smithers-excellent/docker-build-push@v5
+      if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master'
       with:
-        context: ${{ matrix.repo }}
-        push: true
-        tags: ${{ env.GROUP }}/${{ matrix.repo }}:${{ github.sha }}
+        registry: docker.io
+        image: pavankumar789/gitactions    
+        tag_with_ref: true
+        tag_with_sha: true
